@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
-
+use App\Models\Product;
 class BookController extends Controller
 {
     /**
@@ -11,8 +11,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::all(); // get all books from DB
-        return view('books.index', compact('books'));
+        $products = Product::all();
+        return view('product.index')->with('products', $products);
+
     }
 
     /**
@@ -42,7 +43,7 @@ class BookController extends Controller
     public function show($id)
     {
         $books = Book::find($id);
-        return view('books.show')->with('books', $books);
+        return view('books.show', ['books' => $books]);
     }
     public function edit($id)
     {
